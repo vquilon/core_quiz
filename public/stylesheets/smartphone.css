@@ -8,6 +8,14 @@ body{
 .no-narrow{
 	display: none;
 }
+.video iframe{
+	width: 100%;
+	
+}
+img{
+	width: 340px;
+
+}
 footer, input{
 	font-size:large;
 }

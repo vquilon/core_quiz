@@ -7,7 +7,6 @@ body{
 #page:after{
 	content: "Wide Layout";
 }
-
 nav{
 	float: left;
 	width: 15%;

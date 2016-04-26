@@ -9,3 +9,7 @@ exports.check = function(req, res, next){
 	res.render('quizzes/result', {result:result, answer: answer});
 
 };
+exports.author = function(req, res, next){
+	res.render('quizzes/author');
+
+};
