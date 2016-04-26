@@ -1,0 +1,15 @@
+[
+  {
+    "command": "open",
+    "plugin": "heroku-apps",
+    "timestamp": 1461535429,
+    "cli_version": "heroku-cli/4.30.0-2dfc0f4 (386-windows) go1.6.2",
+    "version": "2.0.2",
+    "os": "windows",
+    "arch": "386",
+    "language": "node/5.10.1",
+    "status": -1073741510,
+    "runtime": 52101,
+    "valid": false
+  }
+]
