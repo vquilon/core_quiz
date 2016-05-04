@@ -13,7 +13,7 @@ exports.question = function(req, res, next) {
 };
 //GET /check
 exports.check = function(req, res, next){
-	models.Quiz.findOne().then(function(Quiz){
+	models.Quiz.findOne().then(function(quiz){
 		if(quiz){
 			var answer= req.query.answer || "";
 			var result = req.query.answer === quiz.answer ? 'Correcta' : 'Incorrecta';
