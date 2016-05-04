@@ -17,4 +17,7 @@ router.get('/quizzes/:quizId(\\d+)/check',quizController.check);
 //Definición de rutas de /author
 router.get('/author', quizController.author);
 
+//Definicion de rutas de busqueda /search
+//router.get('/find',quizController.search);
+
 module.exports = router;

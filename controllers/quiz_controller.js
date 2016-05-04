@@ -16,9 +16,23 @@ exports.load = function(req, res, next, quizId){
 
 //GET /quizzes
 exports.index = function(req, res, next) {
-	models.Quiz.findAll().then(function(quizzes){
-		res.render('quizzes/index.ejs', {quizzes:quizzes});	
+	var search_blank = req.query.search || "";
+	var search=search_blank.replace(/ /g,"%");
+
+	if(search_blank===""){
+		search="Todos los quizzes";
+		models.Quiz.findAll().then(function(quizzes){
+			res.render('quizzes/index', {quizzes:quizzes,search:search});	
+		}).catch(function(error){next(error);});
+
+	}
+	else{
+	search ="%"+search+"%";
+	search_blank="Resultados de la búsqueda "+'"'+search_blank+'"';
+	models.Quiz.findAll({where: {question: {$like: search}}}).then(function(quizzes){
+		res.render('quizzes/index',{search:search_blank,quizzes:quizzes});
 	}).catch(function(error){next(error);});
+	}
 };
 
 //Get /quizzes/:id
@@ -33,8 +47,16 @@ exports.check = function(req, res, next){
 	var answer= req.query.answer || "";
 	var result = answer === req.quiz.answer ? 'Correcta' : 'Incorrecta';
 	res.render('quizzes/result', {quiz:req.quiz,result:result, answer: answer});
-		
-	
+};
+
+exports.search = function(req, res, next){
+	var search_blank = req.query.search || "";
+	var search=search_blank.replace(/ /g,"%");
+	search ="%"+search+"%";
+	models.Quiz.findAll({where: {question: {$like: search}}}).then(function(list){
+		res.render('quizzes/search',{search:search_blank,list:list});
+	}).catch(function(error){next(error);});
+
 };
 
 exports.author = function(req, res, next){

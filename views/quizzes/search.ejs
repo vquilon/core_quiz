@@ -1,0 +1,6 @@
+<h3><%= search %></h3>
+<ul>
+	<% for(var i in list){ %>
+		<a href="/quizzes/<%= list[i].id %>"><%= list[i].question %></a>	
+	<%}%>
+</ul>

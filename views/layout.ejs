@@ -19,7 +19,12 @@
         <a href="/quizzes">Preguntas</a>
         <a href="/author">Créditos</a>
       </nav>
-
+      <section>
+        <form method="get" action="/quizzes"><!--/find-->
+        <input type="text" name="search" value="" placeholder="Busca quiz"/>
+        <input type="submit" value="Buscar">
+        </form>
+      </section>
       <section class="main">
         <div><%- body %></div>
       </section>
