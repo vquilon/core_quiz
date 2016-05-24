@@ -10,9 +10,11 @@ router.get('/', function(req, res, next) {
 //Autolad de rutas que usen :quizId
 router.param('quizId',quizController.load);//autoload :quizId
 
+router.param('format',quizController.formatos);//autoload :quizId
+
 //Definicion d erutas de /quizzes
-router.get('/quizzes',quizController.index);
-router.get('/quizzes/:quizId(\\d+)',quizController.show);
+router.get('/quizzes.:format?',quizController.index);//modificar para json
+router.get('/quizzes/:quizId(\\d+).:format?',quizController.show);//modificar para json
 router.get('/quizzes/:quizId(\\d+)/check',quizController.check);
 //Definición de rutas de /author
 router.get('/author', quizController.author);

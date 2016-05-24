@@ -3,7 +3,7 @@ var path = require('path');
 //Cargar Modelo QRM
 var Sequelize = require('sequelize');
 
-//Postgres DATABASE_URL = postgres://useràsswd@host:port/database
+//Postgres DATABASE_URL = postgres://user:psswd@host:port/database
 //SQLite DATABASE_URL = sqlite://:@:/
 var url = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
 

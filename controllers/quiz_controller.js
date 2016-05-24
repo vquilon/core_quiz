@@ -3,7 +3,7 @@ var models = require('../models');
 //Autoload el quiz asociado a :quizId
 exports.load = function(req, res, next, quizId){
 	models.Quiz.findById(quizId).then(function(quiz){
-		if(quiz){
+		if(quiz){//si encuentra es true
 			req.quiz = quiz;
 			next();
 		}
@@ -13,18 +13,53 @@ exports.load = function(req, res, next, quizId){
 	}).catch(function(error){next(error);});
 };
 
+//GET /quizzes.:format?
+exports.formatos = function(req,res,next,format){
+		console.log("formato "+format);
+		req.format = format;
+		next();
+};
+
 
 //GET /quizzes
 exports.index = function(req, res, next) {
 	var search_blank = req.query.search || "";
 	var search=search_blank.replace(/ /g,"%");
 
+	//NUEVO
+	var formato=req.format || "";
+
+
 	if(search_blank===""){
 		search="Todos los quizzes";
-		models.Quiz.findAll().then(function(quizzes){
-			res.render('quizzes/index', {quizzes:quizzes,search:search});	
-		}).catch(function(error){next(error);});
 
+		if(formato==="html"||formato===""){
+			models.Quiz.findAll().then(function(quizzes){
+				res.render('quizzes/index', {quizzes:quizzes,search:search});	
+			}).catch(function(error){next(error);});
+		}else{
+			if(formato==="json"){
+			models.Quiz.findAll().then(function(quizzes){
+				var cadena='[';
+				var long=0;
+				for(var j in quizzes){
+					long++;
+				}
+				for(var i in quizzes){
+					cadena=cadena+'{ "id": '+quizzes[i].id+',"question": "'+quizzes[i].question+'","answer": "'+quizzes[i].answer+'" }';
+					if(i<long-1){
+						cadena=cadena+',';
+					}
+				}
+				cadena=cadena+']';
+				var obj = JSON.parse(cadena);
+				res.json(obj);	
+			}).catch(function(error){next(error);});
+			}else{
+				res.send("Formato no aceptado "+formato);
+			}
+
+		}
 	}
 	else{
 	search ="%"+search+"%";
@@ -38,7 +73,23 @@ exports.index = function(req, res, next) {
 //Get /quizzes/:id
 exports.show = function(req, res, next){
 	var answer= req.query.answer || "";
-	res.render('quizzes/show',{quiz:req.quiz,answer:answer});
+
+	var formato=req.format || "";
+
+	if(formato==="html"||formato===""){
+		res.render('quizzes/show',{quiz:req.quiz,answer:answer});	
+	}else{
+		if(formato==="json"){
+			var cadena="";
+			cadena='{ "id": '+req.quiz.id+',"question": "'+req.quiz.question+'","answer": "'+req.quiz.answer+'" }';
+			var obj = JSON.parse(cadena);
+			res.json(obj);
+		}else{
+			res.send("Formato no aceptado "+formato);
+		}
+
+	}
+	
 		
 };
 
@@ -49,7 +100,7 @@ exports.check = function(req, res, next){
 	res.render('quizzes/result', {quiz:req.quiz,result:result, answer: answer});
 };
 
-exports.search = function(req, res, next){
+/*exports.search = function(req, res, next){
 	var search_blank = req.query.search || "";
 	var search=search_blank.replace(/ /g,"%");
 	search ="%"+search+"%";
@@ -57,7 +108,7 @@ exports.search = function(req, res, next){
 		res.render('quizzes/search',{search:search_blank,list:list});
 	}).catch(function(error){next(error);});
 
-};
+};*/
 
 exports.author = function(req, res, next){
 	res.render('quizzes/author');
