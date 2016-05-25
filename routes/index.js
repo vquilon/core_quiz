@@ -17,7 +17,7 @@ router.get('/quizzes.:format?',quizController.index);//modificar para json
 router.get('/quizzes/:quizId(\\d+).:format?',quizController.show);//modificar para json
 router.get('/quizzes/:quizId(\\d+)/check',quizController.check);
 router.get('/quizzes/new',quizController.new);
-router.post('/quizzes/create',quizController.create);
+router.post('/quizzes',quizController.create);
 //Definición de rutas de /author
 router.get('/author', quizController.author);
 
