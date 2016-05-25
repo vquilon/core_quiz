@@ -33,6 +33,20 @@ nav{
 section{
 	text-align: left;
 }
+article ul{
+	background-color: #F2C5FA;
+}
+article#flashinfo{
+	color:black;
+}
+article#flashsuccess{
+	color:white;
+	background-color: green;
+}
+article#flasherror{
+	color:white;
+	background-color: red;
+}
 
 footer{
 	text-align: center;
