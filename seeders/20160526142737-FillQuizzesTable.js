@@ -8,7 +8,7 @@ module.exports = {
       { question: 'Capital de Portugal', answer: 'Lisboa',
         createdAt: new Date(), updateAt: new Date() },
       { question: 'Capital de España', answer: 'Madrid',
-        createdAt: new Date(), updateAt: new Date() }
+        createdAt: new Date(), updateAt: new Date() },
     ]);
   },
 
