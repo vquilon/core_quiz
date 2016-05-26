@@ -33,7 +33,7 @@ var sequelize = new Sequelize(	DATABASE_NAME,
 var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 
 //sequelize.sync() crea e inicializa tabla de preguntas en DB
-sequelize.sync().then(function(){//sync() crea la tabla quiz
+/*sequelize.sync().then(function(){//sync() crea la tabla quiz
 	return Quiz.count().then(function(c){
 		if(c === 0){//la tabla se inicializa si está vacia
 			return Quiz.bulkCreate([ 
@@ -50,5 +50,5 @@ sequelize.sync().then(function(){//sync() crea la tabla quiz
 }).catch(function(error){
 	console.log("Error Sincronizando las tablas de la BBDD:",error);
 	process.exit(1);
-});
+});*/
 exports.Quiz = Quiz;//exportar definicion de tabla Quiz
