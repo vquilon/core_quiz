@@ -33,19 +33,29 @@ nav{
 section{
 	text-align: left;
 }
-article ul{
-	background-color: #F2C5FA;
-}
+
 article#flashinfo{
 	color:black;
 }
 article#flashsuccess{
 	color:white;
 	background-color: green;
+	border:solid;
+	border-color:green;
 }
 article#flasherror{
 	color:white;
 	background-color: red;
+	border:solid;
+	border-color:red;
+}
+article#flasherror ul{
+	color:black;
+	background-color: #F2C5FA;
+}
+article#flashsuccess ul{
+	color:black;
+	background-color: #84EC99;
 }
 
 footer{
