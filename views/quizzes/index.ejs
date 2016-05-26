@@ -8,6 +8,9 @@
 			<td>
 				<a href="/quizzes/<%= quizzes[i].id %>/edit"><button>Editar</button></a>
 			</td>
+			<td>
+				<a href="/quizzes/<%= quizzes[i].id %>?_method=DELETE" onClick="return confirm('¿ Quieres borrar el quiz <%=quizzes[i].id%>: <%=quizzes[i].question%> ?');"><button>Borrar</button></a>
+			</td>
 		</tr>
 	<%}%>
 </table>
