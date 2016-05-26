@@ -12,7 +12,7 @@ module.exports = {
         answer:     {type:Sequelize.STRING,
                     validate:{notEmpty:{msg:"Falta Respuesta"} } },
         createdAt:  {type:Sequelize.DATE,   allowNull:false},
-        updateAt:   {type:Sequelize.DATE,   allowNull:false} 
+        updatedAt:   {type:Sequelize.DATE,   allowNull:false} 
       },
       {sync:{force:true}
       }
