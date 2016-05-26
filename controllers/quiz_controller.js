@@ -8,6 +8,7 @@ exports.load = function(req, res, next, quizId){
 			next();
 		}
 		else{
+			req.flash('error','No existe el quiz con id='+quizId+'.');
 			next(new Error('No existe quizId='+quizId));
 		}
 	}).catch(function(error){next(error);});
