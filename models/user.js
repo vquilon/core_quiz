@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes){
 			type: DataTypes.STRING,
 			unique: true,
 			validate: {notEmpty: {msg: "Falta username"}}
-		},
-		password:{
+		 },
+		 password:{
 			type: DataTypes.STRING,
 			validate: {notEmpty: {msg: "Falta password"}},
 			set: function(password){
@@ -17,14 +17,20 @@ module.exports = function(sequelize, DataTypes){
 				this.salt = Math.round((new Date().valueOf() * Math.random())) + '';
 				this.setDataValue('password',encryptPassword(password, this.salt));
 			}
-		},
-		salt:{
+		 },
+		 salt:{
 			type: DataTypes.STRING
-		},
-		isAdmin:{
+		 },
+		 isAdmin:{
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
-		}
+		 }
+		},
+		{instanceMethods:{
+			verifyPassword: function(password){
+				return encryptPassword(password,this.salt) === this.password;
+			}
+		 }
 		});
 };
 /*
