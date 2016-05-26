@@ -2,7 +2,7 @@ var models = require('../models');
 var Sequelize = require('sequelize');
 //Autoload el quiz asociado a :quizId
 exports.load = function(req, res, next, quizId){
-	models.Quiz.findById(quizId).then(function(quiz){
+	models.Quiz.findById(quizId,{include:[models.Comment]}).then(function(quiz){
 		if(quiz){//si encuentra es true
 			req.quiz = quiz;
 			next();

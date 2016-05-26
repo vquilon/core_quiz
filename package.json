@@ -8,7 +8,7 @@
     "seed_local":"sequelize db:seed:all --url sqlite://%cd%/quiz.sqlite",
     "migrate_heroku":"heroku run ./node_modules/.bin/sequelize db:migrate --url postgres://jldwyrstdbwdzj:X7iIOrBJqugK-mC3KIxrzQuV-v@ec2-107-20-174-127.compute-1.amazonaws.com:5432/d6j5i2ra0pijac",
     "seed_heroku":"heroku run ./node_modules/.bin/sequelize db:seed:all --url postgres://jldwyrstdbwdzj:X7iIOrBJqugK-mC3KIxrzQuV-v@ec2-107-20-174-127.compute-1.amazonaws.com:5432/d6j5i2ra0pijac",
-    "reset_heroku":"heroku pg:reset DATEBASE"
+    "reset_heroku":"heroku pg:reset DATABASE"
   },
   "engines": {
     "node": "4.2.x",
