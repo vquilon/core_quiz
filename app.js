@@ -38,7 +38,30 @@ app.use(function(req, res, next){
   //Hacer visible req.session en las vistas
   res.locals.session = req.session;
   next();
-})
+});
+
+app.use(function(req, res, next){
+  //Verificar si ha expirado el tiempo de sesion
+  if(req.session.user){//Hay sesion
+    console.log("****************Hay usuario*****************");
+    console.log(req.session.user);
+    var datems=new Date().getTime();
+    var diftime=datems-req.session.user.expiredAt;
+    console.log(diftime);
+     if(diftime>=120000){//MAS DE DOS MINUTOS
+      console.log("****************Logout mas de dos minutos*****************");
+      delete req.session.user;//eliminar sesion
+      res.redirect("/session");//redirect a login
+    }else{
+      req.session.user.expiredAt=datems;//actualizar tiempo sesion
+    }
+  }
+  next();
+});
+
+
+
+
 
 app.use('/', routes);
 
@@ -72,6 +95,7 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
 
 
 module.exports = app;

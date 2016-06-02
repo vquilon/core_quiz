@@ -42,7 +42,7 @@ exports.create = function(req, res, next){
 			req.flash('error',emsg);
 			res.render('users/new',{user:user});
 		}else{
-			//Guardar en la BBDD
+			//Guardar en la BBDD                                 
 			return user.save({fields: ["username","password","salt"]}).then(function(user){
 			req.flash('success','Usuario creado con éxito.');
 			res.redirect('/session');//Redirecciona  pagina de login

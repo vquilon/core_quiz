@@ -21,6 +21,8 @@ module.exports = {
         salt:       {type: Sequelize.STRING },
         isAdmin:    {type: Sequelize.BOOLEAN,
                     defaultValue: false},
+        expiredAt:   {type:Sequelize.INTEGER,   //Añadido para determinar cuando expira la sesion p12
+                    allowNull:false}, 
         createdAt:  {type:Sequelize.DATE,   
                     allowNull:false},
         updatedAt:  {type:Sequelize.DATE,   
