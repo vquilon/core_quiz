@@ -9,13 +9,11 @@
 	<b>Es Administrador:</b>
 	<%=user.isAdmin ? "Si" : "No"%>
 </p>
+<%if(session.user){%>
+	<p>
+		<a href="/users/<%= user.id %>/edit"><button type="button">Editar</button></a>
 
-<p>
-	<a href="/users/<%= user.id %>/edit"><button type="button">Editar</button></a>
-</p>
-
-<p>
-	<a href="/users/<%= user.id %>?_method=DELETE" onClick="return confirm('¿ Quieres borrar la cuenta <%=user.id%>: <%=user.username%> ?');"><button>Borrar</button></a>
-</p>
-
+		<a href="/users/<%= user.id %>?_method=DELETE" onClick="return confirm('¿ Quieres borrar la cuenta <%=user.id%>: <%=user.username%> ?');"><button>Borrar</button></a>
+	</p>
+<%}%>
 <a href="/users"><button type="button">Volver</button></a>

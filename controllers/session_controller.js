@@ -49,3 +49,12 @@ exports.destroy = function(req, res, next){
 
 	res.redirect("/session");//redirect a login
 };
+
+//login Required usado para los users con accesos
+exports.loginRequired = function(req, res, next){
+	if(req.session.user){
+		next();
+	}else{
+		res.redirect('/session?redir='+(req.param('redir') || req.url));
+	}
+};
