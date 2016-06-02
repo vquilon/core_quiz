@@ -17,7 +17,7 @@
             <a href="/users/new">Registrarse</a>
             <a href="/session">Login</a>
           <%} else{%>
-            <a href="/users/<%=session.user.id%>">Perfil</a>
+            <label><%=session.user.username%> <%=session.user.isAdmin ? "(ADMIN)" : "" %></label><a href="/users/<%=session.user.id%>">Perfil</a>
             <a href="/session?_method=DELETE">Logout</a>
           <%}%>
         </div>

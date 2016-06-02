@@ -31,7 +31,7 @@ exports.create = function(req, res, next){
 	authenticate(login, password).then(function(user){
 		if(user){      
 			var datems= new Date().getTime();            
-			req.session.user = {id:user.id, username:user.username, expiredAt:datems};
+			req.session.user = {id:user.id, username:user.username,isAdmin:user.isAdmin, expiredAt:datems};
 			res.redirect(redir);//redireccion a redir
 		}else{
 			req.flash('error','La autenticación ha fallado. Reinténtelo otra vez.');

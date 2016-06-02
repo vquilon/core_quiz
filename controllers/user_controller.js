@@ -100,3 +100,29 @@ exports.destroy = function(req, res, next){
 		next(error);
 	});
 };
+
+exports.adminOrMyselfRequired = function(req, res, next){
+	var isAdmin = req.session.user.isAdmin;
+	var userId = req.user.id;
+	var loggedUserId = req.session.user.id;
+
+	if(isAdmin || userId === loggedUserId){
+		next();
+	}else{
+		console.log('Ruta prohibida: no es el usuario logeado, ni un administrador.');
+		res.send(403);
+	}
+};
+
+exports.adminAndNotMyselfRequired = function(req, res, next){
+	var isAdmin = req.session.user.isAdmin;
+	var userId = req.user.id;
+	var loggedUserId = req.session.user.id;
+
+	if(isAdmin && userId !== loggedUserId){
+		next();
+	}else{
+		console.log('Ruta prohibida: no es el usuario logeado, ni un administrador');
+		res.send(403);
+	}
+};
